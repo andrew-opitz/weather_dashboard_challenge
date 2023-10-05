@@ -1,0 +1,31 @@
+ul .weather-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.weather-list {
+    padding: 5px;
+}
+
+ul .weather-list:nth-child(1)::before {
+    content: "Place: ";
+}
+
+ul .weather-list:nth-child(2)::before {
+    content: "Date: "
+}
+
+ul .weather-list:nth-child(3)::before {
+    content: "Temp: ";
+}
+
+ul .weather-list:nth-child(4)::before {
+    content: 'Condtions: '
+}
+
+ul .weather-list:nth-child(5)::before {
+    content: "Humidity: ";
+}
+ul .weather-list:nth-child(6)::before {
+    content: "Wind Speed: "
+}
