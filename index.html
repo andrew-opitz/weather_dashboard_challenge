@@ -8,20 +8,25 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <div id="input-div">
+    <nav class="navbar">
+        <h1 class="nav-h1">Weather Dashboard</h1>
+    </nav>
+<main>
 
-        <input id="user-input" type="text" placeholder="Please enter a loaction (City, State, Country)">
-        <button id="weather-btn">Submit</button>
-    </div>
-
-    <div id="output-div">
-        <p id="weather-p">
-
-        </p>
-    </div>
-
+    <section class="input-section">
+        <form id="input-form">
+            <input id="user-input" type="text" placeholder="Please enter a loaction (City, State, Country)">
+            <button id="weather-btn">Submit</button>
+        </form>
+    </section>
+    
+    <section id="output-section" class="border border-black border-3 p-3 m-2 bg-light">
+        <p id="weather-p"></p>
+    </section>
+    
+</main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

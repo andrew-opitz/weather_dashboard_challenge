@@ -1,9 +1,9 @@
 const apiKey = '358fcb793a53c3da26743ae950044af5'
 let cityNameCountry = ''
-const inputDiv = $('#input-div')
+const inputForm = $('#input-form')
 const userInput = $('#user-input')
 const weatherBtn = $('#weather-btn')
-const outputDiv = $('#output-div')
+const outputSection = $('#output-section')
 const weatherP = $('#weather-p')
 
 
@@ -19,10 +19,7 @@ function CurrentWeather() {
   })
   .then(data => {
     
-    var info = data.main
-    var timezone = data.timezone
       var place = data.name
-      var feelsLike = data.main.feels_like
       var humidity = data.main.humidity
       var temp = data.main.temp
       var windSpeed = data.wind.speed
@@ -41,6 +38,8 @@ function CurrentWeather() {
       } else if (conditions === 'scattered clouds') {
         iconCode = '03d'
       } else if (conditions === 'broken clouds') {
+        iconCode = '04d'
+      } else if(conditions ==='overcast clouds') {
         iconCode = '04d'
       } else if (conditions === 'shower rain') {
         iconCode = '09d'
@@ -74,7 +73,8 @@ function CurrentWeather() {
     });
   }
   
-  document.querySelector('#weather-btn').addEventListener('click', function () {
+  document.querySelector('#weather-btn').addEventListener('click', function (event) {
+   event.preventDefault()
     cityNameCountry = userInput.val()
     CurrentWeather()
   })
