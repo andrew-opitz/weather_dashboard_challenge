@@ -5,6 +5,8 @@ const userInput = $('#user-input')
 const weatherBtn = $('#weather-btn')
 const outputSection = $('#output-section')
 const weatherP = $('#weather-p')
+const futureOutput = $('#future-output')
+const futureP = $('#future-p')
 
 
 function CurrentWeather() {
@@ -73,8 +75,48 @@ function CurrentWeather() {
     });
   }
   
+function futureWeather() {
+  const futureApi = `https://api.openweathermap.org/data/2.5/forecast?q=${cityNameCountry}&units=imperial&appid=${apiKey}`
+  fetch(futureApi)
+  .then(function (res) {
+       
+    return res.json();
+  }).then(function (info) {
+  
+    
+    
+    info.list.forEach(function (chunk) {
+      
+      var forecastDate = dayjs(chunk.dt_txt);
+      
+      var currentDate = dayjs();
+
+      
+      if (forecastDate.date() !== currentDate.date()) {
+        
+        var hour = forecastDate.hour();
+
+        
+        if (hour === 12) {
+          
+          console.log(chunk)
+        }
+      }
+     })
+  })
+}
+
+
+
+
+
+
+
+
+
   document.querySelector('#weather-btn').addEventListener('click', function (event) {
    event.preventDefault()
     cityNameCountry = userInput.val()
     CurrentWeather()
+    futureWeather()
   })
