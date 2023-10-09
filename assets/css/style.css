@@ -38,3 +38,30 @@ ul .weather-list:nth-child(5)::before {
 ul .weather-list:nth-child(6)::before {
     content: "Wind Speed: "
 }
+
+.future-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.day-2-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.day-3-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.day-4-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.day-5-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+

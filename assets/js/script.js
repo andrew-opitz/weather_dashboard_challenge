@@ -6,7 +6,7 @@ const weatherBtn = $('#weather-btn')
 const outputSection = $('#output-section')
 const weatherP = $('#weather-p')
 const futureOutput = $('#future-output')
-const futureP = $('#future-p')
+
 
 
 function CurrentWeather() {
@@ -30,6 +30,7 @@ function CurrentWeather() {
       var lat = data.coord.lat
       var lon = data.coord.lon
       var currentDate = new Date()
+      
       
       const icon = new Image()
     
@@ -83,26 +84,107 @@ function futureWeather() {
     return res.json();
   }).then(function (info) {
   
+  var futurePlace = info.city.name
+  var collectedData = []
+  var futureIcon = new Image()
+  var futureIconCode = ''
+  
+  info.list.forEach(function (chunk) {
+    
+    var forecastDate = dayjs(chunk.dt_txt);
+    
+    var currentDate = dayjs();
     
     
-    info.list.forEach(function (chunk) {
+    if (forecastDate.date() !== currentDate.date()) {
       
-      var forecastDate = dayjs(chunk.dt_txt);
+      var hour = forecastDate.hour();
       
-      var currentDate = dayjs();
+      
+      if (hour === 12) {
+        var futureDate = chunk.dt_txt
+        var futureTemp = chunk.main.temp
+        var futureConditions = chunk.weather[0].description
+        var futureHumidity = chunk.main.humidity
+        var futureWindspeed = chunk.wind.speed
+        var futureCode = chunk.weather[0].icon
 
-      
-      if (forecastDate.date() !== currentDate.date()) {
-        
-        var hour = forecastDate.hour();
-
-        
-        if (hour === 12) {
-          
-          console.log(chunk)
+        if (futureConditions === 'clear sky') {
+          futureIconCode = '01d'
+        } else if (futureConditions === 'few clouds') {
+          futureIconCode = '02d'
+        } else if (futureConditions === 'scattered clouds') {
+          futureIconCode = '03d'
+        } else if (futureConditions === 'broken clouds') {
+          futureIconCode = '04d'
+        } else if(futureConditions ==='overcast clouds') {
+          futureIconCode = '04d'
+        } else if (futureConditions === 'shower rain') {
+          futureIconCode = '09d'
+        } else if (futureConditions === 'rain') {
+          futureIconCode = '10d'
+        } else if (futureConditions === 'thunderstorm') {
+          futureIconCode = '11d'
+        } else if (futureConditions === 'snow') {
+          futureIconCode = '13d'
+        } else if (futureConditions === 'mist') {
+          futureIconCode = '50d'
         }
+        
+        
+        collectedData.push(futureDate, futureTemp, futureConditions, futureHumidity, futureWindspeed, futureIconCode)
+       
+        futureIcon.src = `http://openweathermap.org/img/w/${futureIconCode}.png`
+      }
       }
      })
+     $('#future-name').append('Place: ' + futurePlace)
+     $('#future-date').append('Date: ' + collectedData[0])
+     $('#future-temp').append('Temp: ' + collectedData[1] + ' °F')
+     $('#future-conditions').append('Conditions: ' + collectedData[2], futureIcon)
+     $('#future-humidity').append('Humidity: ' + collectedData[3] + ' %')
+     $('#future-windspeed').append('Windspeed: ' + collectedData[4] + ' mph')
+    
+
+     $('#day-2-date').append('Date: ' + collectedData[6])
+
+     $('#day-2-temp').append('Temp: ' + collectedData[7] + ' °F')
+
+     $('#day-2-conditions').append('Conditions: ' + collectedData[8], futureIcon)
+
+     $('#day-2-humidity').append('Humidity: ' + collectedData[9] + ' %')
+
+     $('#day-2-windspeed').append('Windspeed: ' + collectedData[10] + ' mph')
+
+     $('#day-3-date').append('Date: ' + collectedData[12])
+
+     $('#day-3-temp').append('Temp: ' + collectedData[13] + ' °F')
+
+     $('#day-3-conditions').append('Conditions: ' + collectedData[14], futureIcon)
+
+     $('#day-3-humidity').append('Humidity: ' + collectedData[15] + ' %')
+
+     $('#day-3-windspeed').append('Windspeed: ' + collectedData[16] + ' mph')
+
+     $('#day-4-date').append('Date: ' + collectedData[18])
+
+     $('#day-4-temp').append('Temp: ' + collectedData[19] + ' °F')
+
+     $('#day-4-conditions').append('Conditions: ' + collectedData[20], futureIcon)
+
+     $('#day-4-humidity').append('Humidity: ' + collectedData[21] + ' %')
+
+     $('#day-4-windspeed').append('Windspeed: ' + collectedData[22] + ' mph')
+
+     $('#day-5-date').append('Date: ' + collectedData[24])
+
+     $('#day-5-temp').append('Temp: ' + collectedData[25] + ' °F')
+
+     $('#day-5-conditions').append('Conditions: ' + collectedData[26], futureIcon)
+
+     $('#day-5-humidity').append('Humidity: ' + collectedData[27] + ' %')
+
+     $('#day-5-windspeed').append('Windspeed: ' + collectedData[28] + ' mph')
   })
 }
 
