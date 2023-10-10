@@ -87,7 +87,7 @@ function futureWeather() {
   var futurePlace = info.city.name
   var collectedData = []
   var futureIcon = new Image()
-  var futureIconCode = ''
+  
   
   info.list.forEach(function (chunk) {
     
@@ -108,39 +108,19 @@ function futureWeather() {
         var futureHumidity = chunk.main.humidity
         var futureWindspeed = chunk.wind.speed
         var futureCode = chunk.weather[0].icon
-
-        if (futureConditions === 'clear sky') {
-          futureIconCode = '01d'
-        } else if (futureConditions === 'few clouds') {
-          futureIconCode = '02d'
-        } else if (futureConditions === 'scattered clouds') {
-          futureIconCode = '03d'
-        } else if (futureConditions === 'broken clouds') {
-          futureIconCode = '04d'
-        } else if(futureConditions ==='overcast clouds') {
-          futureIconCode = '04d'
-        } else if (futureConditions === 'shower rain') {
-          futureIconCode = '09d'
-        } else if (futureConditions === 'rain') {
-          futureIconCode = '10d'
-        } else if (futureConditions === 'thunderstorm') {
-          futureIconCode = '11d'
-        } else if (futureConditions === 'snow') {
-          futureIconCode = '13d'
-        } else if (futureConditions === 'mist') {
-          futureIconCode = '50d'
-        }
         
         
-        collectedData.push(futureDate, futureTemp, futureConditions, futureHumidity, futureWindspeed, futureIconCode)
+        collectedData.push(futureDate, futureTemp, futureConditions, futureHumidity, futureWindspeed, futureCode)
        
-        futureIcon.src = `http://openweathermap.org/img/w/${futureIconCode}.png`
+        futureIcon.src = `http://openweathermap.org/img/w/${futureCode}.png`
       }
       }
      })
+     
      $('#future-name').append('Place: ' + futurePlace)
      $('#future-date').append('Date: ' + collectedData[0])
      $('#future-temp').append('Temp: ' + collectedData[1] + ' °F')
+     futureCode = collectedData[5]
      $('#future-conditions').append('Conditions: ' + collectedData[2], futureIcon)
      $('#future-humidity').append('Humidity: ' + collectedData[3] + ' %')
      $('#future-windspeed').append('Windspeed: ' + collectedData[4] + ' mph')
@@ -150,7 +130,8 @@ function futureWeather() {
 
      $('#day-2-temp').append('Temp: ' + collectedData[7] + ' °F')
 
-     $('#day-2-conditions').append('Conditions: ' + collectedData[8], futureIcon)
+     futureCode = collectedData[11]
+     $('#day-2-conditions').append('Conditions: ' + collectedData[8])
 
      $('#day-2-humidity').append('Humidity: ' + collectedData[9] + ' %')
 
@@ -160,7 +141,8 @@ function futureWeather() {
 
      $('#day-3-temp').append('Temp: ' + collectedData[13] + ' °F')
 
-     $('#day-3-conditions').append('Conditions: ' + collectedData[14], futureIcon)
+     futureCode = collectedData[17]
+     $('#day-3-conditions').append('Conditions: ' + collectedData[14])
 
      $('#day-3-humidity').append('Humidity: ' + collectedData[15] + ' %')
 
@@ -170,7 +152,8 @@ function futureWeather() {
 
      $('#day-4-temp').append('Temp: ' + collectedData[19] + ' °F')
 
-     $('#day-4-conditions').append('Conditions: ' + collectedData[20], futureIcon)
+      futureCode = collectedData[23]
+     $('#day-4-conditions').append('Conditions: ' + collectedData[20])
 
      $('#day-4-humidity').append('Humidity: ' + collectedData[21] + ' %')
 
@@ -180,7 +163,8 @@ function futureWeather() {
 
      $('#day-5-temp').append('Temp: ' + collectedData[25] + ' °F')
 
-     $('#day-5-conditions').append('Conditions: ' + collectedData[26], futureIcon)
+      futureCode = collectedData[29]
+     $('#day-5-conditions').append('Conditions: ' + collectedData[26])
 
      $('#day-5-humidity').append('Humidity: ' + collectedData[27] + ' %')
 
