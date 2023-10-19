@@ -86,7 +86,7 @@ function futureWeather() {
   
   var futurePlace = info.city.name
   var collectedData = []
-  var futureIcon = new Image()
+  
   
   
   info.list.forEach(function (chunk) {
@@ -108,81 +108,60 @@ function futureWeather() {
         var futureHumidity = chunk.main.humidity
         var futureWindspeed = chunk.wind.speed
         var futureCode = chunk.weather[0].icon
-        
-        
-        collectedData.push(futureDate, futureTemp, futureConditions, futureHumidity, futureWindspeed, futureCode)
-       
+        var futureIcon = new Image()
+
         futureIcon.src = `http://openweathermap.org/img/w/${futureCode}.png`
+        
+        collectedData.push(futureDate, futureTemp, futureConditions, futureHumidity, futureWindspeed, futureIcon)
+
       }
-      }
-     })
-     
-     $('#future-name').append('Place: ' + futurePlace)
-     $('#future-date').append('Date: ' + collectedData[0])
-     $('#future-temp').append('Temp: ' + collectedData[1] + ' °F')
-     futureCode = collectedData[5]
-     $('#future-conditions').append('Conditions: ' + collectedData[2], futureIcon)
-     $('#future-humidity').append('Humidity: ' + collectedData[3] + ' %')
-     $('#future-windspeed').append('Windspeed: ' + collectedData[4] + ' mph')
-    
-
-     $('#day-2-date').append('Date: ' + collectedData[6])
-
-     $('#day-2-temp').append('Temp: ' + collectedData[7] + ' °F')
-
-     futureCode = collectedData[11]
-     $('#day-2-conditions').append('Conditions: ' + collectedData[8])
-
-     $('#day-2-humidity').append('Humidity: ' + collectedData[9] + ' %')
-
-     $('#day-2-windspeed').append('Windspeed: ' + collectedData[10] + ' mph')
-
-     $('#day-3-date').append('Date: ' + collectedData[12])
-
-     $('#day-3-temp').append('Temp: ' + collectedData[13] + ' °F')
-
-     futureCode = collectedData[17]
-     $('#day-3-conditions').append('Conditions: ' + collectedData[14])
-
-     $('#day-3-humidity').append('Humidity: ' + collectedData[15] + ' %')
-
-     $('#day-3-windspeed').append('Windspeed: ' + collectedData[16] + ' mph')
-
-     $('#day-4-date').append('Date: ' + collectedData[18])
-
-     $('#day-4-temp').append('Temp: ' + collectedData[19] + ' °F')
-
-      futureCode = collectedData[23]
-     $('#day-4-conditions').append('Conditions: ' + collectedData[20])
-
-     $('#day-4-humidity').append('Humidity: ' + collectedData[21] + ' %')
-
-     $('#day-4-windspeed').append('Windspeed: ' + collectedData[22] + ' mph')
-
-     $('#day-5-date').append('Date: ' + collectedData[24])
-
-     $('#day-5-temp').append('Temp: ' + collectedData[25] + ' °F')
-
-      futureCode = collectedData[29]
-     $('#day-5-conditions').append('Conditions: ' + collectedData[26])
-
-     $('#day-5-humidity').append('Humidity: ' + collectedData[27] + ' %')
-
-     $('#day-5-windspeed').append('Windspeed: ' + collectedData[28] + ' mph')
+    }
   })
-}
+  $('#future-name').append('Place: ' + futurePlace)
+  $('#future-date').append('Date: ' + collectedData[0])
+  $('#future-temp').append('Temp: ' + collectedData[1] + ' °F')
+  $('#future-conditions').append('Condtions: ' + '<li class="future-list" id="futureContainer">' + collectedData[2])
+  $('#futureContainer').append(collectedData[5])
+  $('#future-humidity').append('Humidity: ' + collectedData[3] + ' %')
+  $('#future-windspeed').append('Windspeed: ' + collectedData[4] + ' mph')
+
+  $('#day-2-date').append('Date: ' + collectedData[6])
+  $('#day-2-temp').append('Temp: ' + collectedData[7] + ' °F')
+  $('#day-2-conditions').append('Condtions: ' + '<li class="future-list" id="day-2Container">' + collectedData[8])
+  $('#day-2Container').append(collectedData[11])
+  $('#day-2-humidity').append('Humidity: ' + collectedData[9] + ' %')
+  $('#day-2-windspeed').append('Windspeed: ' + collectedData[10] + ' mph')
+
+  $('#day-3-date').append('Date: ' + collectedData[12])
+  $('#day-3-temp').append('Temp: ' + collectedData[13] + ' °F')
+  $('#day-3-conditions').append('Condtions: ' + '<li class="future-list" id="day-3Container">' + collectedData[14])
+  $('#day-3Container').append(collectedData[17])
+  $('#day-3-humidity').append('Humidity: ' + collectedData[15] + ' %')
+  $('#day-3-windspeed').append('Windspeed: ' + collectedData[16] + ' mph')
+
+  $('#day-4-date').append('Date: ' + collectedData[18])
+  $('#day-4-temp').append('Temp: ' + collectedData[19] + ' °F')
+  $('#day-4-conditions').append('Condtions: ' + '<li class="future-list" id="day-4Container">' + collectedData[20])
+  $('#day-4Container').append(collectedData[23])
+  $('#day-4-humidity').append('Humidity: ' + collectedData[21] + ' %')
+  $('#day-4-windspeed').append('Windspeed: ' + collectedData[22] + ' mph')
+
+  $('#day-5-date').append('Date: ' + collectedData[24])
+  $('#day-5-temp').append('Temp: ' + collectedData[25] + ' °F')
+  $('#day-5-conditions').append('Condtions: ' + '<li class="future-list" id="day-5Container">' + collectedData[26])
+  $('#day-5Container').append(collectedData[29])
+  $('#day-5-humidity').append('Humidity: ' + collectedData[27] + ' %')
+  $('#day-5-windspeed').append('Windspeed: ' + collectedData[28] + ' mph')
 
 
 
+   })
 
-
-
-
-
+ }
 
   document.querySelector('#weather-btn').addEventListener('click', function (event) {
    event.preventDefault()
     cityNameCountry = userInput.val()
     CurrentWeather()
     futureWeather()
-  })
+    })
