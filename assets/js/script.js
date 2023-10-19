@@ -7,9 +7,41 @@ const outputSection = $('#output-section')
 const weatherP = $('#weather-p')
 const futureOutput = $('#future-output')
 
+function clearOutput() {
+  $(weatherP).empty()
+  $('#future-name').empty()
+  $('#future-date').empty()
+  $('#future-temp').empty()
+  $('#future-conditions').empty()
+  $('#future-humidity').empty()
+  $('#future-windspeed').empty()
+  $('#day-2-date').empty()
+  $('#day-2-temp').empty()
+  $('#day-2-conditions').empty()
+  $('#day-2-humidity').empty()
+  $('#day-2-windspeed').empty()
+  $('#day-3-date').empty()
+  $('#day-3-temp').empty()
+  $('#day-3-conditions').empty()
+  $('#day-3-humidity').empty()
+  $('#day-3-windspeed').empty()
+  $('#day-4-date').empty()
+  $('#day-4-temp').empty()
+  $('#day-4-conditions').empty()
+  $('#day-4-humidity').empty()
+  $('#day-4-windspeed').empty()
+  $('#day-5-date').empty()
+  $('#day-5-temp').empty()
+  $('#day-5-conditions').empty()
+  $('#day-5-humidity').empty()
+  $('#day-5-windspeed').empty()
 
+}
 
 function CurrentWeather() {
+
+  clearOutput()
+
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityNameCountry}&units=imperial&appid=${apiKey}`;
   fetch(apiUrl)
   .then(response => {
@@ -77,6 +109,9 @@ function CurrentWeather() {
   }
   
 function futureWeather() {
+
+  clearOutput()
+  
   const futureApi = `https://api.openweathermap.org/data/2.5/forecast?q=${cityNameCountry}&units=imperial&appid=${apiKey}`
   fetch(futureApi)
   .then(function (res) {
